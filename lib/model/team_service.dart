@@ -4,7 +4,7 @@ import '../model/team.dart';
 
 class TeamService {
   static const String apiKey =
-      "e913d9f7-0d4c-4709-831c-42c615865b17"; // API key (should be secured)
+      "ENTER YOUR API KEY"; // API key (should be secured)
   static const String apiUrl =
       "https://api.balldontlie.io/v1/teams"; // API endpoint
 
@@ -21,10 +21,7 @@ class TeamService {
       var jsonData = jsonDecode(response.body); // Decoding the JSON response
       List<Team> teams = [];
       for (var eachTeam in jsonData["data"]) {
-        final team = Team(
-          abbreviation: eachTeam["abbreviation"],
-          city: eachTeam['city'],
-        );
+        final team = Team.fromJson(eachTeam);
         teams.add(team); // Adding the team to the list
       }
       return teams;
